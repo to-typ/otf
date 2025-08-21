@@ -29,7 +29,7 @@ public class AircraftPhysics : MonoBehaviour
     private void FixedUpdate()
     {
         BiVector3 forceAndTorqueThisFrame = 
-            CalculateAerodynamicForces(rb.velocity, rb.angularVelocity, Vector3.zero, 1.2f, rb.worldCenterOfMass);
+            CalculateAerodynamicForces(rb.linearVelocity, rb.angularVelocity, Vector3.zero, 1.2f, rb.worldCenterOfMass);
 
         Vector3 velocityPrediction = PredictVelocity(forceAndTorqueThisFrame.p
             + transform.forward * thrust * thrustPercent + Physics.gravity * rb.mass);
@@ -61,7 +61,7 @@ public class AircraftPhysics : MonoBehaviour
 
     private Vector3 PredictVelocity(Vector3 force)
     {
-        return rb.velocity + Time.fixedDeltaTime * PREDICTION_TIMESTEP_FRACTION * force / rb.mass;
+        return rb.linearVelocity + Time.fixedDeltaTime * PREDICTION_TIMESTEP_FRACTION * force / rb.mass;
     }
 
     private Vector3 PredictAngularVelocity(Vector3 torque)
