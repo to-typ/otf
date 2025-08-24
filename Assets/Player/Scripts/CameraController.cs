@@ -10,6 +10,13 @@ public class CameraController : MonoBehaviour
     public AirplaneController airplaneController;
     public PlayerMovement playerMovement;
 
+    public Transform plane;
+    public Transform player;
+
+    public float minDistanceToInteract = 5;
+
+    public CharacterController characterController;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,13 +29,20 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!firstPersonMode)
+        {
+            player.position = plane.position;
+        }
+
         if (Input.GetKeyDown(KeyCode.C))
         {
-            if (firstPersonMode)
-            {
+            float distance = Vector3.Distance(plane.position, player.position);
+
+            if (firstPersonMode && distance < minDistanceToInteract)
+            { 
                 playerMovement.enabled = false;
                 airplaneController.enabled = true;
-                
+
                 playerCam.enabled = false;
                 planeCam.enabled = true;
                 firstPersonMode = false;
@@ -41,6 +55,9 @@ public class CameraController : MonoBehaviour
                 planeCam.enabled = false;
                 playerCam.enabled = true;
                 firstPersonMode = true;
+
+                player.position = plane.position + new Vector3(0, 5f, 0);
+                characterController.enabled = true;
             }
         }
     }
