@@ -16,6 +16,7 @@ public class CameraController : MonoBehaviour
     public float minDistanceToInteract = 5;
 
     public CharacterController characterController;
+    public GameObject planeCollider;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,6 +33,7 @@ public class CameraController : MonoBehaviour
         if (!firstPersonMode)
         {
             player.position = plane.position;
+            player.rotation = plane.rotation;
         }
 
         if (Input.GetKeyDown(KeyCode.C))
@@ -39,7 +41,12 @@ public class CameraController : MonoBehaviour
             float distance = Vector3.Distance(plane.position, player.position);
 
             if (firstPersonMode && distance < minDistanceToInteract)
-            { 
+            {
+                foreach (var item in planeCollider.GetComponentsInChildren<Collider>())
+                {
+                    Physics.IgnoreCollision(item, characterController, true);
+                }
+
                 playerMovement.enabled = false;
                 airplaneController.enabled = true;
 
@@ -47,7 +54,7 @@ public class CameraController : MonoBehaviour
                 planeCam.enabled = true;
                 firstPersonMode = false;
             }
-            else
+            else if (!firstPersonMode)
             {
                 airplaneController.enabled = false;
                 playerMovement.enabled = true;
@@ -57,7 +64,12 @@ public class CameraController : MonoBehaviour
                 firstPersonMode = true;
 
                 player.position = plane.position + new Vector3(0, 5f, 0);
-                characterController.enabled = true;
+                player.rotation = Quaternion.Euler(0f, 0f, 0f);
+
+                foreach (var item in planeCollider.GetComponentsInChildren<Collider>())
+                {
+                    Physics.IgnoreCollision(item, characterController, false);
+                }
             }
         }
     }
