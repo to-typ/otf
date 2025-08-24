@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
 
     public float jumpHeight = 3f;
 
-
     // Update is called once per frame
     void Update()
     {
@@ -34,7 +33,15 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        controller.Move(move * speed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            controller.Move(move * 1.5f * speed * Time.deltaTime);
+        }
+        else
+        {
+            controller.Move(move * speed * Time.deltaTime);
+        }
+            
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
