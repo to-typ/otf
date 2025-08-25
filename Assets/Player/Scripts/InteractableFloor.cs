@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NumberGenerator : MonoBehaviour, IInteractable
+public class InteractableFloor : MonoBehaviour, IInteractable
 {
     public void Interact()
     {

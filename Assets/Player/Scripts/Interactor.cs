@@ -7,6 +7,8 @@ public interface IInteractable
 
 public class Interactor : MonoBehaviour
 {
+    public Transform lenkrad;
+
     public Transform InteractorSource;
     public float InteractRange;
 
@@ -104,10 +106,17 @@ public class Interactor : MonoBehaviour
                 }
 
                 // Platzieren nur erlauben, wenn kein Objekt im Collider ist
-                if (Input.GetKeyDown(KeyCode.T) && canPlace)
+                if (Input.GetMouseButtonDown(0) && canPlace)
                 {
                     GameObject clone = Instantiate(original, spawnPosition, original.transform.rotation);
                     clone.name = original.name;
+
+                    // Füge das neue Objekt als Child zu "Raft" hinzu
+                    GameObject raft = GameObject.Find("Raft");
+                    if (raft != null)
+                    {
+                        clone.transform.SetParent(raft.transform);
+                    }
                 }
             }
             else
