@@ -5,12 +5,12 @@ public class HotbarGenerator : MonoBehaviour
 {
     [Header("Hotbar Settings")]
     public RectTransform hotbarTransform;   // Das Panel mit Größe 1000x100
-    public int slotCount = 10;
+    public int slotCount = 9;
     public Vector2 slotSize = new Vector2(80, 80);
     public float slotSpacing = 10f;
 
     private GameObject[] slots;
-    private int selectedSlot = 1;
+    private int selectedSlot = 0;
     private KeyCode[] keyCodes = {
         KeyCode.Alpha1,
         KeyCode.Alpha2,
