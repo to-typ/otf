@@ -20,7 +20,6 @@ public class AnimationStateController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetBool("jump", false);
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         isWalking = Input.GetKey(KeyCode.W);
