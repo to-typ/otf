@@ -8,6 +8,7 @@ public interface IInteractable
 public class Interactor : MonoBehaviour
 {
     public Transform lenkrad;
+    public Rigidbody planeRg;
 
     public Transform InteractorSource;
     public float InteractRange;
@@ -20,6 +21,7 @@ public class Interactor : MonoBehaviour
     {
         if (isHoldingHammer)
         {
+            planeRg.isKinematic = true;
             Ray r = new Ray(InteractorSource.position, InteractorSource.forward);
             if (Physics.Raycast(r, out RaycastHit hitInfo, InteractRange))
             {
@@ -129,6 +131,7 @@ public class Interactor : MonoBehaviour
             }
             else
             {
+                planeRg.isKinematic = false;
                 DestroyPreview();
             }
         }

@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
 
     bool firstPersonMode = true;
 
-    public AirplaneController airplaneController;
+    public PlaneController airplaneController;
     public PlayerMovement playerMovement;
 
     public Transform plane;
