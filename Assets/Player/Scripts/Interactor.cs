@@ -14,7 +14,7 @@ public class Interactor : MonoBehaviour
 
     private GameObject previewObject;
     private bool canPlace = true; // Neu: Status, ob gebaut werden darf
-    private bool isHoldingHammer = false;
+    public bool isHoldingHammer = false;
 
     void Update()
     {
