@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using System.Collections; // <-- Hinzugefügt für IEnumerator
 
 public class NewCameraController : MonoBehaviour
 {
@@ -12,9 +14,11 @@ public class NewCameraController : MonoBehaviour
     public PlayerMovement playerMovement;
     public AnimationStateController animationStateController;
     public MouseLook mouseLook;
+    [SerializeField] TextMeshProUGUI cannotExitPlane;
 
     public void Start()
     {
+        cannotExitPlane.enabled = false;
         planeController.enabled = false;
         playerMovement.enabled = true;
         animationStateController.enabled = true;
@@ -40,7 +44,7 @@ public class NewCameraController : MonoBehaviour
 
                 player.gameObject.transform.parent = plane;
             }
-            else
+            else if (!planeController.isAirborne)
             {
                 playerCamera.enabled = true;
                 planeCamera.enabled = false;
@@ -52,7 +56,17 @@ public class NewCameraController : MonoBehaviour
                 player.gameObject.transform.parent = null;
                 player.rotation = Quaternion.Euler(0f, plane.rotation.eulerAngles.y, 0f);
             }
+            else
+            {
+                cannotExitPlane.enabled = true;
+                StartCoroutine(HideCannotExitPlane());
+            }
         }
     }
 
+    private IEnumerator HideCannotExitPlane()
+    {
+        yield return new WaitForSeconds(2f);
+        cannotExitPlane.enabled = false;
+    }
 }

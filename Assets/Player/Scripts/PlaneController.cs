@@ -12,6 +12,7 @@ public class PlaneController : MonoBehaviour
     private float roll;
     private float pitch;
     private float yaw;
+    public bool isAirborne;
 
     private float responseModifier
     {
@@ -60,6 +61,8 @@ public class PlaneController : MonoBehaviour
 
         //Lift
         rb.AddForce(Vector3.up * rb.linearVelocity.magnitude * lift);
+
+        isAirborne = rb.linearVelocity.magnitude > 0.1f;
     }
 
     private void UpdateHud()
