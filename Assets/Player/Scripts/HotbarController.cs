@@ -32,13 +32,8 @@ public class HotbarGenerator : MonoBehaviour
     {
         slots = new GameObject[slotCount];
 
-        // Breite und Höhe der Hotbar
-        float hotbarWidth = hotbarTransform.rect.width;
-        float hotbarHeight = hotbarTransform.rect.height;
-
         // Erste Slot-Position (Start bei 10px Abstand vom linken Rand, vertikal mittig)
         float startX = slotSpacing;
-        float posY = -(hotbarHeight / 2 - slotSize.y / 2 - slotSpacing);
 
         for (int i = 0; i < slotCount; i++)
         {
