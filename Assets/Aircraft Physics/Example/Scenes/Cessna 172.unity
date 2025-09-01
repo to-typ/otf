@@ -3880,7 +3880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
   planeCam: {fileID: 963194227}
   playerCam: {fileID: 620633607}
-  airplaneController: {fileID: 2066979582}
+  airplaneController: {fileID: 0}
   playerMovement: {fileID: 1620039769}
   plane: {fileID: 2066979579}
   player: {fileID: 1620039770}
