@@ -10,7 +10,7 @@ public class NewCameraController : MonoBehaviour
     public Camera playerCamera;
     public Camera planeCamera;
 
-    public PlaneController planeController;
+    public AirplaneController planeController;
     public PlayerMovement playerMovement;
     public AnimationStateController animationStateController;
     public MouseLook mouseLook;
@@ -44,6 +44,7 @@ public class NewCameraController : MonoBehaviour
 
                 player.gameObject.transform.parent = plane;
             }
+            /*
             else if (!planeController.isAirborne)
             {
                 playerCamera.enabled = true;
@@ -61,6 +62,7 @@ public class NewCameraController : MonoBehaviour
                 cannotExitPlane.enabled = true;
                 StartCoroutine(HideCannotExitPlane());
             }
+            */
         }
     }
 

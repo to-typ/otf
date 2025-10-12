@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ad2ae223750974380ba545a828f9a1, type: 3}
   m_Name: Wing1
   m_EditorClassIdentifier: 
-  liftSlope: 12.63
+  liftSlope: 6
   skinFriction: 0.02
   zeroLiftAoA: -3
   stallAngleHigh: 15
   stallAngleLow: -15
-  chord: 2.56
+  chord: 1.56
   flapFraction: 0.2
   span: 5.15
   autoAspectRatio: 0
