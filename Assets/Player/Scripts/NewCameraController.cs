@@ -30,6 +30,12 @@ public class NewCameraController : MonoBehaviour
 
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+            mouseLook.enabled = !mouseLook.enabled;
+        }
+
         float distanceToPlane = Vector3.Distance(player.position, plane.position);
         if (Input.GetKeyDown(KeyCode.C) && distanceToPlane < 4f)
         {
